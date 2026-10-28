@@ -3,12 +3,98 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Выбор даты и времени</title>
+    <title>ПРИНЦЕССА — Выбор даты и времени</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="page">
-      <!-- Перенесите вашу верстку. Удалите статичные данные. Подключите скрипт -->
+      <div class="container">
+        <header class="header">
+          <div class="logo">ПРИНЦЕССА</div>
+          <nav class="nav">
+            <a href="#">Услуги</a>
+            <a href="#">Галерея</a>
+            <a href="#">Команда</a>
+            <a href="#">Отзывы</a>
+            <a href="#">Контакты</a>
+          </nav>
+        </header>
+
+        <div class="steps">
+          <div class="step done">1</div>
+          <div class="line done"></div>
+          <div class="step done">2</div>
+          <div class="line done"></div>
+          <div class="step active">3</div>
+          <div class="line"></div>
+          <div class="step">4</div>
+          <div class="line"></div>
+          <div class="step">5</div>
+        </div>
+
+        <main class="main-content">
+          <h1 class="page-title">Выбор даты и времени</h1>
+          
+          <div class="booking-wrapper">
+            <section class="calendar-card">
+              <div class="calendar-header">
+                <h2 id="monthTitle">Июнь 2025</h2>
+                <div class="arrows">
+                   <button id="prevMonthBtn">&lt;</button>
+                   <button id="nextMonthBtn">&gt;</button>
+                </div>
+              </div>
+              <div class="calendar-grid" id="calendarGrid">
+              </div>
+            </section>
+
+            <section class="time-card">
+              <h2>Доступное время</h2>
+              <div class="time-grid" id="timeGrid">
+              </div>
+            </section>
+          </div>
+
+          <div class="actions">
+            <div class="selected-info">
+              <span class="label">Выбранная дата и время:</span>
+              <span class="value" id="selectedDateTime">Не выбрано</span>
+            </div>
+            <button class="btn-next">Далее</button>
+          </div>
+        </main>
+      </div>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-top">
+            <div class="footer-brand">
+              <h2>ПРИНЦЕССА</h2>
+              <p>Дружелюбное описание услуг</p>
+            </div>
+            <div class="footer-contacts">
+              <h3>КОНТАКТЫ</h3>
+              <p>ул. Садовая, 15, Москва</p>
+              <p>+7 (495) 123-45-67</p>
+            </div>
+            <div class="footer-hours">
+              <h3>РЕЖИМ РАБОТЫ</h3>
+              <p>Пн-Пт: 9:00 – 21:00</p>
+              <p>Сб-Вс: 10:00 – 19:00</p>
+            </div>
+          </div>
+          
+          <div class="footer-bottom">
+            <span>2026. Все права защищены.</span>
+            <a href="#">Политика конфиденциальности</a>
+          </div>
+        </div>
+      </footer>
     </div>
+    
+    <script src="script.js"></script>
   </body>
 </html>

@@ -1,6 +1,3 @@
-/* Стили страницы.
-   Скопируйте с предудущей практики. */
-
 * {
   margin: 0;
   padding: 0;
@@ -8,6 +5,353 @@
 }
 
 body {
-  min-height: 100vh;
-  font-family: sans-serif;
+  font-family: 'Cormorant Garamond', serif; 
+  background-color: #ffffff;
+  color: #333333;
+  line-height: 1.5;
+  overflow-x: hidden; 
+  font-size: 18px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0;
+  border-bottom: 1px solid #ffe4e4;
+  margin-bottom: 20px;
+  flex-wrap: wrap; 
+  gap: 15px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700; 
+  color: #ff7b7b;
+  letter-spacing: 1px;
+}
+
+.nav {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #ff7b7b;
+  font-size: 16px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: #e65c5c;
+}
+
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+  flex-wrap: wrap; 
+  gap: 10px;
+}
+
+.step {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #ffe4e4;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.step.done { 
+  background-color: #ffb3b3; 
+}
+
+.step.active { 
+  background-color: #ff7b7b; 
+}
+
+.line {
+  height: 2px;
+  width: 60px;
+  background-color: #ffe4e4;
+  margin: 0 10px;
+}
+
+.line.done { 
+  background-color: #ffb3b3; 
+}
+
+.main-content {
+  margin-bottom: 60px;
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+.booking-wrapper {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap; 
+}
+
+.calendar-card, 
+.time-card {
+  flex: 1 1 350px; 
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
+}
+
+.calendar-card h2,
+.time-card h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #222;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-header h2 {
+  margin-bottom: 0;
+}
+
+.arrows button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: #fff0f0;
+  color: #ff7b7b;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 5px;
+  transition: background 0.3s;
+}
+
+.arrows button:hover {
+  background: #ffe4e4;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px; 
+  text-align: center;
+}
+
+.weekday {
+  font-size: 14px;
+  color: #999;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.day {
+  width: 100%; 
+  height: 36px; 
+  border-radius: 18px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #ffe4e4; 
+  color: #e65c5c;
+  transition: all 0.2s;
+}
+
+.day:hover { 
+  background-color: #ffb3b3; 
+  color: #fff; 
+}
+
+.day.active { 
+  background-color: #ff7b7b; 
+  color: #fff; 
+}
+
+.day.disabled { 
+  background-color: #f5f5f5; 
+  color: #c0c0c0; 
+  cursor: not-allowed; 
+}
+
+.day.disabled:hover { 
+  background-color: #f5f5f5; 
+  color: #c0c0c0; 
+}
+
+.time-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 15px;
+}
+
+.time-slot {
+  padding: 15px 10px;
+  border: none;
+  border-radius: 12px;
+  background-color: #ffe4e4; 
+  color: #e65c5c; 
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.time-slot:hover { 
+  background-color: #ffb3b3; 
+  color: #fff; 
+}
+
+.time-slot.disabled { 
+  background-color: #f5f5f5; 
+  color: #c0c0c0; 
+  cursor: not-allowed; 
+}
+
+.time-slot.disabled:hover { 
+  background-color: #f5f5f5; 
+  color: #c0c0c0; 
+}
+
+
+.btn-next {
+  padding: 15px 50px;
+  border: none;
+  border-radius: 30px;
+  background-color: #ff7b7b;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s;
+  font-family: 'Cormorant Garamond', serif; 
+}
+
+.btn-next:hover { 
+  background-color: #e65c5c; 
+}
+
+.btn-next:active { 
+  transform: scale(0.98); 
+}
+
+.footer {
+  background-color: #2b2b2b;
+  color: #ffffff;
+  padding: 60px 0 30px; 
+  width: 100%; 
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.footer h2, 
+.footer h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.footer p {
+  color: #aaaaaa;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.footer-brand { 
+  max-width: 300px; 
+}
+
+.footer-brand h2 { 
+  color: #ffffff; 
+  font-size: 28px; 
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #444;
+  padding-top: 20px;
+  font-size: 14px;
+  color: #888;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.footer-bottom a { 
+  color: #888; 
+  text-decoration: none; 
+  transition: color 0.3s; 
+}
+
+.footer-bottom a:hover { 
+  color: #fff; 
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.selected-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.selected-info .label {
+  font-size: 16px;
+  color: #999;
+}
+
+.selected-info .value {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ff7b7b;
+}
+
+
+.time-slot.selected {
+  background-color: #ff7b7b;
+  color: #fff;
 }
