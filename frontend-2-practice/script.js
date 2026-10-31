@@ -1,4 +1,5 @@
-const TODAY = { day: 5, month: 5, year: 2025 };
+const now = new Date();
+const TODAY = { day: now.getDate(), month: now.getMonth(), year: now.getFullYear() };
 
 const MONTHS = [
   "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
@@ -13,6 +14,11 @@ const MONTHS_GENITIVE = [
 const DAYS_OF_WEEK = [
   "Воскресенье", "Понедельник", "Вторник", "Среда", 
   "Четверг", "Пятница", "Суббота"
+];
+
+const DAYS_OF_WEEK_ACCUSATIVE = [
+  "Воскресенье", "Понедельник", "Вторник", "Среду", 
+  "Четверг", "Пятницу", "Субботу"
 ];
 
 function fetchSlotsForDay(day) {
@@ -78,11 +84,21 @@ function isDateSelectable(day, month, year) {
   return compareDates(cellDate, TODAY) >= 0; 
 }
 
+function updateNextButtonState() {
+  const nextBtn = document.querySelector(".btn-next");
+  if (nextBtn) {
+    if (!state.selectedDay || !state.selectedTime) {
+      nextBtn.disabled = true;
+    } else {
+      nextBtn.disabled = false;
+    }
+  }
+}
+
 function renderCalendar() {
   const grid = document.getElementById("calendarGrid");
   const title = document.getElementById("monthTitle");
   
-
   title.textContent = `${MONTHS[state.currentMonth]} ${state.currentYear}`;
 
   const cells = buildCalendarGrid(state.currentYear, state.currentMonth);
@@ -100,7 +116,7 @@ function renderCalendar() {
     if (!cell.otherMonth && !isDateSelectable(cell.day, state.currentMonth, state.currentYear)) {
       classes += " disabled"; 
     }
-    if (!cell.otherMonth && cell.day === state.selectedDay) {
+    if (!cell.otherMonth && state.selectedDay !== null && cell.day === state.selectedDay) {
       classes += " active"; 
     }
 
@@ -163,25 +179,38 @@ function onDayClick(event) {
   renderCalendar();
   renderTimeSlots();
   updateBottomBar();
+  updateNextButtonState();
 }
 
 function onTimeSlotClick(time) {
   state.selectedTime = time;
   renderTimeSlots();
   updateBottomBar();
+  updateNextButtonState();
 }
 
 function setupMonthNavigation() {
+  function handleMonthChange() {
+    state.selectedDay = null;
+    state.selectedTime = null;
+    state.slots = [];
+    
+    renderCalendar();
+    renderTimeSlots();
+    updateBottomBar(); 
+    updateNextButtonState();
+  }
+
   document.getElementById("prevMonthBtn").addEventListener("click", () => {
     state.currentMonth--;
     if (state.currentMonth < 0) { state.currentMonth = 11; state.currentYear--; }
-    renderCalendar();
+    handleMonthChange();
   });
 
   document.getElementById("nextMonthBtn").addEventListener("click", () => {
     state.currentMonth++;
     if (state.currentMonth > 11) { state.currentMonth = 0; state.currentYear++; }
-    renderCalendar();
+    handleMonthChange();
   });
 }
 
@@ -189,11 +218,17 @@ function setupNextButton() {
   const nextBtn = document.querySelector(".btn-next");
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
-      if (!state.selectedTime) {
-        console.log("Время не выбрано");
+      if (!state.selectedDay || !state.selectedTime) return;
+      
+      if (!isDateSelectable(state.selectedDay, state.currentMonth, state.currentYear)) {
+        alert("Выбранная дата недоступна для записи.");
         return;
       }
-      console.log(`Выбрано: ${state.selectedDay} ${MONTHS_GENITIVE[state.currentMonth]} в ${state.selectedTime}`);
+
+      const dateObj = new Date(state.currentYear, state.currentMonth, state.selectedDay);
+      const dayNameAccusative = DAYS_OF_WEEK_ACCUSATIVE[dateObj.getDay()];
+
+      alert(`Успешно! Вы записаны на ${dayNameAccusative}, ${state.selectedDay} ${MONTHS_GENITIVE[state.currentMonth]} в ${state.selectedTime}.`);
     });
   }
 }
@@ -204,6 +239,7 @@ function init() {
   renderCalendar();
   renderTimeSlots();
   updateBottomBar();
+  updateNextButtonState();
 
   setupMonthNavigation();
   setupNextButton();
