@@ -30,10 +30,7 @@ export default function App() {
   const handlePrevMonth = () => {
     let newMonth = currentMonth - 1;
     let newYear = currentYear;
-    if (newMonth < 0) {
-      newMonth = 11;
-      newYear--;
-    }
+    if (newMonth < 0) { newMonth = 11; newYear--; }
     setCurrentMonth(newMonth);
     setCurrentYear(newYear);
     setSelectedDay(null);
@@ -44,10 +41,7 @@ export default function App() {
   const handleNextMonth = () => {
     let newMonth = currentMonth + 1;
     let newYear = currentYear;
-    if (newMonth > 11) {
-      newMonth = 0;
-      newYear++;
-    }
+    if (newMonth > 11) { newMonth = 0; newYear++; }
     setCurrentMonth(newMonth);
     setCurrentYear(newYear);
     setSelectedDay(null);
