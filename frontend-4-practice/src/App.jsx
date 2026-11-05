@@ -50,13 +50,23 @@ export default function App() {
       try {
         setLoadingSlots(true);
         setErrorSlots(null);
+        setSlots([]);
         const data = await fetchSlots({ day: selectedDay, month: currentMonth, year: currentYear });
-        
-        if (!isCancelled) {
-          setSlots(data.slots);
+
+        if (isCancelled) return;
+        if (
+          data.date.day !== selectedDay ||
+          data.date.month !== currentMonth ||
+          data.date.year !== currentYear
+        ) {
+          return;
         }
+        setSlots(data.slots);
       } catch (err) {
-        if (!isCancelled) setErrorSlots(err.message);
+        if (!isCancelled) {
+          setErrorSlots(err.message);
+          setSlots([]);
+        }
       } finally {
         if (!isCancelled) setLoadingSlots(false);
       }
@@ -140,12 +150,12 @@ export default function App() {
       <div className="container">
         <Header />
         <Steps />
-        
+
         <main className="main-content">
           <h1 className="page-title">Выбор даты и времени</h1>
-          
+
           <div className="booking-wrapper">
-            <Calendar 
+            <Calendar
               currentMonth={currentMonth}
               currentYear={currentYear}
               selectedDay={selectedDay}
@@ -154,7 +164,7 @@ export default function App() {
               onPrevMonth={handlePrevMonth}
               onNextMonth={handleNextMonth}
             />
-            <TimeSlots 
+            <TimeSlots
               slots={slots}
               selectedTime={selectedTime}
               loading={loadingSlots}
@@ -163,7 +173,7 @@ export default function App() {
             />
           </div>
 
-          <BottomBar 
+          <BottomBar
             selectedDay={selectedDay}
             selectedTime={selectedTime}
             currentMonth={currentMonth}

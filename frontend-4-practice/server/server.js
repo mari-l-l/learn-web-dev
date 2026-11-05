@@ -1,5 +1,7 @@
 import { database } from "./database.js";
 
+const DELAY_MS = 500;
+
 export default function apiMiddleware() {
   return {
     name: "api-middleware",
@@ -23,9 +25,11 @@ export default function apiMiddleware() {
         const path = urlObj.pathname;
 
         if (path === "/api/booking/today") {
-          res.setHeader("Content-Type", "application/json");
-          res.statusCode = 200;
-          res.end(JSON.stringify(database.today));
+          setTimeout(() => {
+            res.setHeader("Content-Type", "application/json");
+            res.statusCode = 200;
+            res.end(JSON.stringify(database.today));
+          }, DELAY_MS);
           return;
         }
 
@@ -46,7 +50,7 @@ export default function apiMiddleware() {
             res.setHeader("Content-Type", "application/json");
             res.statusCode = 200;
             res.end(JSON.stringify({ date: { day, month, year }, slots: slotsData }));
-          }, 1000);
+          }, DELAY_MS);
           return;
         }
 
