@@ -301,3 +301,14 @@ body {
   .footer-top { flex-direction: column; gap: 20px; }
   .footer-bottom { flex-direction: column; text-align: center; }
 }
+
+.slots-status {
+  padding: 24px 0;
+  text-align: center;
+  color: #ff7b7b;
+  font-weight: 600;
+}
+
+.slots-status--error {
+  color: #d64545;
+}
