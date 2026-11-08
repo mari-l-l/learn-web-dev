@@ -19,7 +19,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© 2026. Все права защищены.</span>
+          <span> 2026. Все права защищены.</span>
           <a href="#">Политика конфиденциальности</a>
         </div>
       </div>
